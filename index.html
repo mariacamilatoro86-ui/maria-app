@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎄 Recetas de Navidad</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <div class="snow-overlay" id="snowContainer"></div>
+    <div class="header-content">
+      <h1>🎄 Recetas de Navidad 🍪</h1>
+      <p class="tagline">Sabores que abrazan el alma en las fiestas</p>
+      <nav>
+        <a href="#recetas">Recetas</a>
+        <a href="#tips">Tips</a>
+        <a href="#bot">Preguntas Frecuentes</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO COUNTDOWN ========== -->
+  <section class="countdown-section">
+    <h2>⏳ Faltan para Navidad</h2>
+    <div class="countdown" id="countdown">
+      <div class="count-box"><span id="days">--</span><small>Días</small></div>
+      <div class="count-box"><span id="hours">--</span><small>Horas</small></div>
+      <div class="count-box"><span id="minutes">--</span><small>Minutos</small></div>
+      <div class="count-box"><span id="seconds">--</span><small>Segundos</small></div>
+    </div>
+  </section>
+
+  <!-- ========== RECETAS ========== -->
+  <section id="recetas" class="section-recetas">
+    <h2 class="section-title">🍽️ Recetas Estrella</h2>
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-emoji">🍗</div>
+        <h3>Pavo Relleno Navideño</h3>
+        <p>El clásico de la mesa navideña, jugoso por dentro y dorado por fuera.</p>
+        <button class="btn-ver" onclick="openRecipe('pavo')">Ver receta</button>
+      </div>
+
+      <div class="card">
+        <div class="card-emoji">🍪</div>
+        <h3>Galletas de Jengibre</h3>
+        <p>Perfectas para decorar y compartir en familia durante las fiestas.</p>
+        <button class="btn-ver" onclick="openRecipe('galletas')">Ver receta</button>
+      </div>
+
+      <div class="card">
+        <div class="card-emoji">🎂</div>
+        <h3>Ponche de Frutas</h3>
+        <p>Bebida caliente tradicional con tejocotes, guayaba y canela.</p>
+        <button class="btn-ver" onclick="openRecipe('ponche')">Ver receta</button>
+      </div>
+
+      <div class="card">
+        <div class="card-emoji">🍮</div>
+        <h3>Ensalada de Manzana</h3>
+        <p>Cremosa, dulce y perfecta como acompañamiento o postre ligero.</p>
+        <button class="btn-ver" onclick="openRecipe('ensalada')">Ver receta</button>
+      </div>
+
+      <div class="card">
+        <div class="card-emoji">🍞</div>
+        <h3>Rosca de Reyes</h3>
+        <p>Suave, esponjosa y llena de fruta cristalizada. ¡Imprescindible!</p>
+        <button class="btn-ver" onclick="openRecipe('rosca')">Ver receta</button>
+      </div>
+
+      <div class="card">
+        <div class="card-emoji">🍫</div>
+        <h3>Chocolate Caliente</h3>
+        <p>Espeso y cremoso, ideal para las noches frías de diciembre.</p>
+        <button class="btn-ver" onclick="openRecipe('chocolate')">Ver receta</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== MODAL RECETA ========== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeRecipe()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeRecipe()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ========== TIPS ========== -->
+  <section id="tips" class="section-tips">
+    <h2 class="section-title">✨ Tips Navideños</h2>
+    <div class="tips-grid">
+      <div class="tip-card">🧂 <p>Sazona el pavo 24 horas antes para que los sabores penetren bien.</p></div>
+      <div class="tip-card">🌡️ <p>Usa un termómetro de cocina — el pavo listo debe marcar 75 °C en el muslo.</p></div>
+      <div class="tip-card">🕯️ <p>Prepara los postres un día antes para reducir el estrés del día festivo.</p></div>
+      <div class="tip-card">🎁 <p>Envuelve las galletas de jengibre en bolsas de celofán como regalo comestible.</p></div>
+      <div class="tip-card">🍊 <p>Añade rodajas de naranja al ponche para darle un toque cítrico especial.</p></div>
+      <div class="tip-card">❄️ <p>La masa de rosca debe reposar en lugar cálido — cerca del horno funciona perfecto.</p></div>
+    </div>
+  </section>
+
+  <!-- ========== BOT FAQ ========== -->
+  <section id="bot" class="section-bot">
+    <h2 class="section-title">🤖 Asistente Navideño</h2>
+    <p class="bot-subtitle">¿Tienes dudas sobre tus recetas? ¡Pregúntame!</p>
+
+    <div class="chat-container">
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg bot-msg">
+          <span class="avatar">🎅</span>
+          <div class="bubble">¡Ho ho ho! Soy el Asistente Navideño 🎄 Puedes preguntarme sobre recetas, tiempos de cocción, sustituciones de ingredientes y más. ¿En qué te ayudo?</div>
+        </div>
+      </div>
+
+      <!-- Sugerencias rápidas -->
+      <div class="quick-questions" id="quickQuestions">
+        <button onclick="askBot('¿Cuánto tiempo tarda en cocerse el pavo?')">🍗 ¿Cuánto tarda el pavo?</button>
+        <button onclick="askBot('¿Cómo hago galletas de jengibre?')">🍪 Galletas de jengibre</button>
+        <button onclick="askBot('¿Qué lleva el ponche?')">☕ Ingredientes del ponche</button>
+        <button onclick="askBot('¿Puedo hacer la rosca sin horno?')">🍞 Rosca sin horno</button>
+        <button onclick="askBot('¿Cómo conservo las sobras de navidad?')">🥡 Guardar sobras</button>
+        <button onclick="askBot('Dame ideas de menú navideño')">🍽️ Ideas de menú</button>
+      </div>
+
+      <div class="chat-input-area">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Escribe tu pregunta aquí..."
+          onkeydown="if(event.key==='Enter') sendMessage()"
+        />
+        <button onclick="sendMessage()" class="send-btn">Enviar 🎄</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <p>🎄 Recetas de Navidad · Hecho con ❤️ y mucha canela · 2026</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
